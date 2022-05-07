@@ -9,7 +9,36 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body > div {
+  width: 780px;
+  margin: 0 auto;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+  margin: 0;
+}
+
+h1,
+h2 {
+  margin: 0;
+}
+
+button {
+  background-color: #ffffff;
+  cursor: pointer;
 }

@@ -1,0 +1,9 @@
+.container {
+  padding: 15px;
+  width: 400px;
+  margin: 0 auto;
+}
+
+.container > h2 {
+  margin-bottom: 15px;
+}

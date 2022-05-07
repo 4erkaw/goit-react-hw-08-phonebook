@@ -1,0 +1,73 @@
+.container {
+  padding: 15px;
+  border: 2px solid black;
+  border-radius: 4px;
+}
+
+.container > p {
+  margin-bottom: 10px;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.container > input {
+  display: block;
+  width: 92%;
+  height: calc(2.25rem + 2px);
+  padding: 0.375rem 0.75rem;
+  margin-bottom: 10px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 2px solid #fe6637;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.container > input:focus {
+  outline: 1px solid #fe6637;
+  box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+}
+
+.container > button {
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 30px;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #fe6637;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  color: #fe6637;
+  transition: 0.2s ease-in-out;
+}
+
+.container > button::before {
+  content: '';
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.5)
+  );
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  top: -8px;
+  left: -75px;
+  transform: skewX(-45deg);
+}
+
+.container > button:hover {
+  background: #fe6637;
+  color: #fff;
+}
+
+.container > button:hover::before {
+  left: 150px;
+  transition: 0.5s ease-in-out;
+}
