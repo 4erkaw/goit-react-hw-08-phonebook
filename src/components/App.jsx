@@ -43,8 +43,10 @@ export default class App extends Component {
   };
 
   checkContact = name => {
-    const find = this.state.contacts.find(contact => contact.name === name);
-    return Boolean(find);
+    const find = this.state.contacts.some(
+      contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
+    return find;
   };
 
   changeFilter = e => {
