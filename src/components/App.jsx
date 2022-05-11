@@ -5,15 +5,16 @@ import Form from './Form';
 import Contacts from './Contacts';
 import Container from './Container';
 import Filter from './Filter';
-import useLocalStorage from './hooks/useLocalStorage';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 export default function App() {
-  const [contacts, setContacts] = useLocalStorage('contacts');
+  const [contacts, setContacts] = useLocalStorage('contacts', '');
   const [filter, setFilter] = useState('');
   const addContact = info => {
     if (checkContact(info.name)) {
       return Notify.failure(`${info.name} is already in contacts list`);
     }
+    setContacts(prev => [{ id: nanoid(), ...info }, ...prev]);
     setContacts([{ id: nanoid(), ...info }, ...contacts]);
   };
 
