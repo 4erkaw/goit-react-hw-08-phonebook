@@ -18,6 +18,9 @@ export default function App() {
   };
 
   const checkContact = name => {
+    if (!contacts) {
+      return false;
+    }
     const find = contacts.some(contact => {
       return contact.name.toLowerCase() === name.toLowerCase();
     });
@@ -46,7 +49,7 @@ export default function App() {
       </Container>
       <Container title="Contacts">
         <Filter value={filter} onChange={changeFilter} />
-        <Contacts remove={remove} contacts={filteredContacts()} />
+        {contacts && <Contacts remove={remove} contacts={filteredContacts()} />}
       </Container>
     </>
   );
