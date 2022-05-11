@@ -47,10 +47,12 @@ export default function App() {
       <Container title="Phonebook">
         <Form addContact={addContact} />
       </Container>
-      <Container title="Contacts">
-        <Filter value={filter} onChange={changeFilter} />
-        {contacts && <Contacts remove={remove} contacts={filteredContacts()} />}
-      </Container>
+      {contacts && (
+        <Container title="Contacts">
+          <Filter value={filter} onChange={changeFilter} />
+          <Contacts remove={remove} contacts={filteredContacts()} />
+        </Container>
+      )}
     </>
   );
 }
