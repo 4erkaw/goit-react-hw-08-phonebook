@@ -16,10 +16,7 @@ const itemsReducer = createReducer(get(contactKey) ?? [], {
 });
 
 const filterReducer = createReducer('', {
-  [changeFilter]: (_, { payload }) => {
-    save(contactKey, payload);
-    return payload;
-  },
+  [changeFilter]: (_, { payload }) => payload,
 });
 
 export default combineReducers({
