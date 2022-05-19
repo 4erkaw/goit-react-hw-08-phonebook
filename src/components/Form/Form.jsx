@@ -2,15 +2,12 @@ import s from './Form.module.css';
 import { useState } from 'react';
 import { Notify } from 'notiflix';
 import { FaPhone, FaRegUser } from 'react-icons/fa';
-import { add } from 'redux/contacts/contacts-actions';
-import { useDispatch, useSelector } from 'react-redux';
-import { getItems } from 'redux/contacts/contacts-selectors';
+import { useCreateContactMutation } from 'service/contactsAPI';
 
 export default function Form() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const contacts = useSelector(getItems);
-  const dispatch = useDispatch();
+  const [addContact] = useCreateContactMutation();
 
   const handleChange = e => {
     const { name, value } = e.currentTarget;
@@ -26,23 +23,24 @@ export default function Form() {
     }
   };
 
-  const checkContact = name => {
-    if (!contacts) {
-      return false;
-    }
-    const find = contacts.some(contact => {
-      return contact.name.toLowerCase() === name.toLowerCase();
-    });
-    return find;
-  };
+  // const checkContact = name => {
+  //   if (!contacts) {
+  //     return false;
+  //   }
+  //   const find = contacts.some(contact => {
+  //     return contact.name.toLowerCase() === name.toLowerCase();
+  //   });
+  //   return find;
+  // };
 
   const onSubmit = e => {
     e.preventDefault();
     const name = e.target.name.value;
-    if (checkContact(name)) {
-      return Notify.failure(`${name} is already in contacts list`);
-    }
-    dispatch(add({ name, number }));
+    const phone = e.target.number.value;
+    // if (checkContact(name)) {
+    //   return Notify.failure(`${name} is already in contacts list`);
+    // }
+    addContact({ name, phone });
     setName('');
     setNumber('');
   };

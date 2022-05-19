@@ -1,22 +1,28 @@
 import s from './Contacts.module.css';
 import { FaRegUserCircle, FaBan } from 'react-icons/fa';
-import { useSelector, useDispatch } from 'react-redux';
-import { remove } from 'redux/contacts/contacts-actions';
-import { getFilteredContacts } from './../../redux/contacts/contacts-selectors';
+import {
+  useRemoveContactMutation,
+  useFetchContactsQuery,
+} from 'service/contactsAPI';
+import { useSelector } from 'react-redux';
+import { getFilter } from 'redux/contacts/contacts-selectors';
 
 export default function Contacts() {
-  const contacts = useSelector(getFilteredContacts);
-  const dispatch = useDispatch();
-
+  const { data } = useFetchContactsQuery();
+  const [remove] = useRemoveContactMutation();
+  const filter = useSelector(getFilter)?.toLowerCase().trim();
+  const contacts = data?.filter(({ name }) =>
+    name.toLowerCase().includes(filter)
+  );
   return (
     <ul className={s.list}>
-      {contacts &&
-        contacts.map(({ name, number, id }) => (
+      {contacts?.length > 0 &&
+        contacts.map(({ name, phone, id }) => (
           <li key={id}>
             <p>
-              <FaRegUserCircle size="13px" /> {name}: {number}
+              <FaRegUserCircle size="13px" /> {name}: {phone}
             </p>
-            <button type="button" onClick={() => dispatch(remove(id))}>
+            <button type="button" onClick={() => remove(id)}>
               <FaBan />
             </button>
           </li>
