@@ -2,11 +2,15 @@ import s from './Form.module.css';
 import { useState } from 'react';
 import { Notify } from 'notiflix';
 import { FaPhone, FaRegUser } from 'react-icons/fa';
-import { useCreateContactMutation } from 'service/contactsAPI';
+import {
+  useCreateContactMutation,
+  useFetchContactsQuery,
+} from 'service/contactsAPI';
 
 export default function Form() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const { data } = useFetchContactsQuery();
   const [addContact] = useCreateContactMutation();
 
   const handleChange = e => {
@@ -23,26 +27,27 @@ export default function Form() {
     }
   };
 
-  // const checkContact = name => {
-  //   if (!contacts) {
-  //     return false;
-  //   }
-  //   const find = contacts.some(contact => {
-  //     return contact.name.toLowerCase() === name.toLowerCase();
-  //   });
-  //   return find;
-  // };
+  const checkContact = name => {
+    if (!data) {
+      return false;
+    }
+    const find = data.some(contact => {
+      return contact.name.toLowerCase() === name.toLowerCase();
+    });
+    return find;
+  };
 
   const onSubmit = e => {
     e.preventDefault();
     const name = e.target.name.value;
     const phone = e.target.number.value;
-    // if (checkContact(name)) {
-    //   return Notify.failure(`${name} is already in contacts list`);
-    // }
+    if (checkContact(name)) {
+      return Notify.failure(`${name} is already in contacts`);
+    }
     addContact({ name, phone });
     setName('');
     setNumber('');
+    return Notify.success(`${name} was added to your contacts`);
   };
 
   return (

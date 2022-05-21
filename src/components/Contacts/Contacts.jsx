@@ -6,6 +6,7 @@ import {
 } from 'service/contactsAPI';
 import { useSelector } from 'react-redux';
 import { getFilter } from 'redux/contacts/contacts-selectors';
+import { Notify } from 'notiflix';
 
 export default function Contacts() {
   const { data } = useFetchContactsQuery();
@@ -14,6 +15,10 @@ export default function Contacts() {
   const contacts = data?.filter(({ name }) =>
     name.toLowerCase().includes(filter)
   );
+  const removeContact = (id, name) => {
+    remove(id);
+    Notify.info(`${name} contact was removed`);
+  };
   return (
     <ul className={s.list}>
       {contacts?.length > 0 &&
@@ -22,7 +27,7 @@ export default function Contacts() {
             <p>
               <FaRegUserCircle size="13px" /> {name}: {phone}
             </p>
-            <button type="button" onClick={() => remove(id)}>
+            <button type="button" onClick={() => removeContact(id, name)}>
               <FaBan />
             </button>
           </li>
