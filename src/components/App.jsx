@@ -1,24 +1,27 @@
-import Form from './Form';
-import Contacts from './Contacts';
-import Container from './Container';
-import Filter from './Filter';
+import { Routes, Route } from 'react-router-dom';
+import Home from './../views/Home/Home';
+import Navbar from './Navbar/Navbar';
+import Contacts from '../views/Contacts';
+import Login from './Login';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import authOperations from 'redux/auth/auth-operations';
 
 export default function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    console.log('useEffect');
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
+
   return (
     <>
-      <Container title="Phonebook">
-        <Form />
-      </Container>
-      <Container title="Contacts">
-        <Filter />
-        <Contacts />
-      </Container>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="contacts" element={<Contacts />} />
+        <Route path="login" element={<Login />} />
+      </Routes>
     </>
   );
 }
-
-// {/* <Container title="Contacts"> */}
-// {/* <Form /> */}
-// {/* {isFetching && <h2>Loading...</h2>} */}
-// {/* {data && <Contacts contacts={data} />} */}
-// {/* </Container> */}
