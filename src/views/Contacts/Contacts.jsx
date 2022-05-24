@@ -1,5 +1,5 @@
 import Container from 'components/Container';
-import Form from 'components/Form';
+import Form from 'components/ContactForm';
 import Filter from 'components/Filter';
 import ContactsList from 'components/ContactsList';
 

@@ -1,17 +1,14 @@
-import s from './Form.module.css';
+import s from './ContactForm.module.css';
 import { useState } from 'react';
 import { Notify } from 'notiflix';
 import { FaPhone, FaRegUser } from 'react-icons/fa';
-import {
-  useCreateContactMutation,
-  useFetchContactsQuery,
-} from 'service/contactsAPI';
+import { useAddContactMutation, useFetchContactsQuery } from 'redux/contacts';
 
 export default function Form() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const { data } = useFetchContactsQuery();
-  const [addContact] = useCreateContactMutation();
+  const [addContact] = useAddContactMutation();
 
   const handleChange = e => {
     const { name, value } = e.currentTarget;
