@@ -1,21 +1,19 @@
 import Container from '../../components/Container';
-import Register from 'components/Navbar/Register';
-import authSelectors from 'redux/auth/auth-selectors';
+import Register from 'components/Register/Register';
+import { getIsLoggedIn } from 'redux/auth/auth-selectors';
 import { useSelector } from 'react-redux';
-import Contacts from '../Contacts/Contacts';
+import Welcome from './../../components/Welcome/Welcome';
 
 export default function Home() {
-  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const isLoggedIn = useSelector(getIsLoggedIn);
   return (
     <>
       {isLoggedIn ? (
         <Container>
-          <h1>Welcome to Contacts Service</h1>
+          <Welcome />
         </Container>
       ) : (
-        <Container title="Register">
-          <Register />
-        </Container>
+        <Register />
       )}
     </>
   );

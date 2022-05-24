@@ -1,8 +1,9 @@
 .header {
   padding-top: 1em;
   padding-bottom: 1em;
-  border-bottom: 1px solid #ccc;
-  box-shadow: 4px 5px 10px 0px rgba(34, 60, 80, 0.2);
+  border-bottom: 3px solid rgba(255, 145, 0, 0.61);
+  border-radius: 5px;
+  box-shadow: 4px 5px 10px 0px rgba(34, 60, 80, 0.4);
 }
 .nav {
   display: flex;

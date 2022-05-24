@@ -1,0 +1,54 @@
+.welcome {
+  position: relative;
+  margin: 0 auto;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.8;
+  border: 3px dashed rgb(201, 174, 21);
+  transition: 200ms ease-in-out;
+  border-radius: 5px;
+}
+
+.welcome:hover {
+  background-color: rgb(255, 196, 0);
+}
+
+.welcome::before {
+  position: absolute;
+  content: '';
+  width: 100px;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.5)
+  );
+  left: -350px;
+  transform: skewX(-45deg);
+}
+
+.welcome::after {
+  position: absolute;
+  content: '';
+  width: 100px;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.5)
+  );
+  left: -650px;
+  transform: skewX(-45deg);
+}
+
+.welcome:hover::after {
+  left: 1000px;
+  transition: 700ms ease-in-out;
+}
+
+.welcome:hover::before {
+  left: 1000px;
+  transition: 500ms ease-in-out;
+}
