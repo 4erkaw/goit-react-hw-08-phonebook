@@ -1,7 +1,7 @@
 import s from './Filter.module.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { changeFilter, getFilter } from 'redux/filter';
+import { changeFilter } from 'redux/filter';
 
 export default function Filter() {
   const [filter, setFilter] = useState('');
