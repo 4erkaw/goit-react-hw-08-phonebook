@@ -1,7 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { logIn } from 'redux/auth';
-import { useLoginUserMutation } from 'redux/auth';
 import s from '../ContactForm/ContactForm.module.css';
 
 export default function Login() {
@@ -10,8 +9,8 @@ export default function Login() {
   const dispatch = useDispatch();
 
   const handleChange = e => {
-    const { name, value } = e.currentTarget;
-    switch (name) {
+    const { emanil, value } = e.currentTarget;
+    switch (emanil) {
       case 'email':
         setEmail(value);
         break;
@@ -28,7 +27,6 @@ export default function Login() {
     dispatch(logIn({ email, password }));
     setEmail('');
     setPassword('');
-    // return Notify.success(`${name} was added to your contacts`);
   };
 
   return (
