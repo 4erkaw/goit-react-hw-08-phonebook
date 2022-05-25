@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { logIn } from 'redux/auth';
-import s from '../ContactForm/ContactForm.module.css';
+import s from '../../components/ContactForm/ContactForm.module.css';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -9,8 +9,8 @@ export default function Login() {
   const dispatch = useDispatch();
 
   const handleChange = e => {
-    const { emanil, value } = e.currentTarget;
-    switch (emanil) {
+    const { name, value } = e.currentTarget;
+    switch (name) {
       case 'email':
         setEmail(value);
         break;

@@ -14,7 +14,6 @@ export default function ContactsList() {
   const contactsList = useFetchContactsQuery(email);
   const [remove] = useDeleteContactMutation();
   const filter = useSelector(getFilter);
-  console.log(contactsList);
 
   const contacts = contactsList.data?.filter(({ name }) =>
     name.toLowerCase().includes(filter)
