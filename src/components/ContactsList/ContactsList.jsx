@@ -1,18 +1,22 @@
 import s from './Contacts.module.css';
 import { FaRegUserCircle, FaBan } from 'react-icons/fa';
 import {
-  useRemoveContactMutation,
+  useDeleteContactMutation,
   useFetchContactsQuery,
-} from 'service/contactsAPI';
+} from 'redux/contacts';
 import { useSelector } from 'react-redux';
-import { getFilter } from 'redux/contacts/contacts-selectors';
+import { getFilter } from 'redux/filter';
 import { Notify } from 'notiflix';
+import { getUserName } from 'redux/auth';
 
-export default function Contacts() {
-  const { data } = useFetchContactsQuery();
-  const [remove] = useRemoveContactMutation();
-  const filter = useSelector(getFilter)?.toLowerCase().trim();
-  const contacts = data?.filter(({ name }) =>
+export default function ContactsList() {
+  const email = useSelector(getUserName);
+  const contactsList = useFetchContactsQuery(email);
+  const [remove] = useDeleteContactMutation();
+  const filter = useSelector(getFilter);
+  console.log(contactsList);
+
+  const contacts = contactsList.data?.filter(({ name }) =>
     name.toLowerCase().includes(filter)
   );
   const removeContact = (id, name) => {
@@ -22,10 +26,10 @@ export default function Contacts() {
   return (
     <ul className={s.list}>
       {contacts?.length > 0 &&
-        contacts.map(({ name, phone, id }) => (
+        contacts.map(({ name, number, id }) => (
           <li key={id}>
             <p>
-              <FaRegUserCircle size="13px" /> {name}: {phone}
+              <FaRegUserCircle size="13px" /> {name}: {number}
             </p>
             <button type="button" onClick={() => removeContact(id, name)}>
               <FaBan />

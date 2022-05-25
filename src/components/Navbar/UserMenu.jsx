@@ -3,12 +3,11 @@ import s from '../Navbar/Navbar.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { BsPersonLinesFill } from 'react-icons/bs';
 import { MdExitToApp } from 'react-icons/md';
-import authSelectors from 'redux/auth/auth-selectors';
-import authOperations from 'redux/auth/auth-operations';
+import { getUserName, logOut } from 'redux/auth';
 
 export default function UserMenu() {
   const dispatch = useDispatch();
-  const name = useSelector(authSelectors.getUserName);
+  const name = useSelector(getUserName);
   return (
     <>
       <NavLink
@@ -24,7 +23,7 @@ export default function UserMenu() {
         <button
           className={s.button}
           type="button"
-          onClick={() => dispatch(authOperations.logOut())}
+          onClick={() => dispatch(logOut())}
         >
           <MdExitToApp size={24} />
         </button>

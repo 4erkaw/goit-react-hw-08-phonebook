@@ -37,11 +37,11 @@ export default function Form() {
   const onSubmit = e => {
     e.preventDefault();
     const name = e.target.name.value;
-    const phone = e.target.number.value;
+    const number = e.target.number.value;
     if (checkContact(name)) {
       return Notify.failure(`${name} is already in contacts`);
     }
-    addContact({ name, phone });
+    addContact({ name, number });
     setName('');
     setNumber('');
     return Notify.success(`${name} was added to your contacts`);

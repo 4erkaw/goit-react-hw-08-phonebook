@@ -1,7 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import authOperations from 'redux/auth/auth-operations';
-import s from '../Form/Form.module.css';
+import { logIn } from 'redux/auth';
+import { useLoginUserMutation } from 'redux/auth';
+import s from '../ContactForm/ContactForm.module.css';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -24,7 +25,7 @@ export default function Login() {
 
   const onSubmit = e => {
     e.preventDefault();
-    dispatch(authOperations.logIn({ email, password }));
+    dispatch(logIn({ email, password }));
     setEmail('');
     setPassword('');
     // return Notify.success(`${name} was added to your contacts`);

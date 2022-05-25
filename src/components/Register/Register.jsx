@@ -1,7 +1,7 @@
-import s from '../Form/Form.module.css';
 import { useState } from 'react';
-import authOperations from 'redux/auth/auth-operations';
+import { register } from 'redux/auth';
 import { useDispatch } from 'react-redux';
+import s from '../ContactForm/ContactForm.module.css';
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -28,7 +28,7 @@ export default function Register() {
 
   const onSubmit = e => {
     e.preventDefault();
-    dispatch(authOperations.register({ name, email, password }));
+    dispatch(register({ name, email, password }));
     setName('');
     setEmail('');
     setPassword('');
