@@ -2,12 +2,11 @@ import s from './ContactForm.module.css';
 import { useState } from 'react';
 import { Notify } from 'notiflix';
 import { FaPhone, FaRegUser } from 'react-icons/fa';
-import { useAddContactMutation, useFetchContactsQuery } from 'redux/contacts';
+import { useAddContactMutation } from 'redux/contacts';
 
-export default function Form() {
+export default function Form({ contacts }) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const { data } = useFetchContactsQuery();
   const [addContact] = useAddContactMutation();
 
   const handleChange = e => {
@@ -25,10 +24,10 @@ export default function Form() {
   };
 
   const checkContact = name => {
-    if (!data) {
+    if (!contacts) {
       return false;
     }
-    const find = data.some(contact => {
+    const find = contacts?.some(contact => {
       return contact.name.toLowerCase() === name.toLowerCase();
     });
     return find;
