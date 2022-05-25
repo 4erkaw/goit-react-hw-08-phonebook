@@ -1,6 +1,7 @@
 import s from './Welcome.module.css';
 import { getUserName } from 'redux/auth';
 import { useSelector } from 'react-redux';
+import { PropTypes } from 'prop-types';
 
 export default function Welcome({ content }) {
   const { welcome, authorize } = content || '';
@@ -18,3 +19,10 @@ export default function Welcome({ content }) {
     </div>
   );
 }
+
+Welcome.propTypes = {
+  content: PropTypes.shape({
+    welcome: PropTypes.string.isRequired,
+    authorize: PropTypes.string.isRequired,
+  }),
+};

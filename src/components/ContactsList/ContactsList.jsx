@@ -4,6 +4,7 @@ import { useDeleteContactMutation } from 'redux/contacts';
 import { useSelector } from 'react-redux';
 import { getFilter } from 'redux/filter';
 import { Notify } from 'notiflix';
+import PropTypes from 'prop-types';
 
 export default function ContactsList({ contacts }) {
   const [remove] = useDeleteContactMutation();
@@ -12,7 +13,6 @@ export default function ContactsList({ contacts }) {
   const contactsList = contacts?.filter(({ name }) =>
     name.toLowerCase().includes(filter)
   );
-  console.log(contacts);
   const removeContact = (id, name) => {
     remove(id);
     Notify.info(`${name} contact was removed`);
@@ -33,3 +33,12 @@ export default function ContactsList({ contacts }) {
     </ul>
   );
 }
+
+ContactsList.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ),
+};

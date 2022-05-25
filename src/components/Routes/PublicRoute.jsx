@@ -13,5 +13,3 @@ export function PublicRoute({ children, restricted = false }) {
 PublicRoute.propTypes = {
   children: PropTypes.node.isRequired,
 };
-
-export default PublicRoute;

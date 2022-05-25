@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Notify } from 'notiflix';
 import { FaPhone, FaRegUser } from 'react-icons/fa';
 import { useAddContactMutation } from 'redux/contacts';
+import { PropTypes } from 'prop-types';
 
 export default function Form({ contacts }) {
   const [name, setName] = useState('');
@@ -76,3 +77,12 @@ export default function Form({ contacts }) {
     </form>
   );
 }
+
+Form.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ),
+};

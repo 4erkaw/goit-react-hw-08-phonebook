@@ -8,9 +8,8 @@ import { getUserName } from 'redux/auth';
 
 export default function Contacts() {
   const name = useSelector(getUserName);
-  console.log(name);
   const { data } = useFetchContactsQuery(name);
-  console.log(data);
+
   return (
     <>
       <Container title="Phonebook">
